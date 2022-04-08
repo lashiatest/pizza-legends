@@ -2,19 +2,27 @@ class OverworldMap {
   constructor(config) {
     this.gameObjects = config.gameObjects
 
-    this.lowerImage = new Image();
+    this.lowerImage = new Image()
     this.lowerImage.src = config.lowerSrc
 
-    this.upperImage = new Image();
-    this.upperSrc = config.upperSrc
+    this.upperImage = new Image()
+    this.upperImage.src = config.upperSrc
   }
 
-  drawLowerImage(context) {
-    context.drawImage(this.lowerImage, 0, 0)
+  drawLowerImage(context, cameraPerson) {
+    context.drawImage(
+      this.lowerImage, 
+      utilities.withGrid(10.5) - cameraPerson.x, 
+      utilities.withGrid(6) - cameraPerson.y
+    )
   }
 
-  drawUpperImage(context) {
-    context.drawImage(this.upperImage, 0, 0)
+  drawUpperImage(context, cameraPerson) {
+    context.drawImage(
+      this.upperImage, 
+      utilities.withGrid(10.5) - cameraPerson.x, 
+      utilities.withGrid(6) - cameraPerson.y
+    )
   }
 }
 

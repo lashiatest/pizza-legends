@@ -8,19 +8,23 @@ class Overworld {
 
   startGameLoop() {
     const step = () => {
-
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
-      this.map.drawLowerImage(this.context)
+      const cameraPerson = this.map.gameObjects.hero
 
       Object.values(this.map.gameObjects).forEach(object => {
         object.update({
           key: this.directionInput.direction
         })
-        object.sprite.draw(this.context)
       })
       
-      this.map.drawUpperImage(this.context)
+      this.map.drawLowerImage(this.context, cameraPerson)
+
+      Object.values(this.map.gameObjects).forEach(object => {
+        object.sprite.draw(this.context, cameraPerson)
+      })
+      
+      this.map.drawUpperImage(this.context, cameraPerson)
       
       requestAnimationFrame(() => {
         step()

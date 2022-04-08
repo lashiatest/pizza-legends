@@ -62,9 +62,9 @@ class Sprite {
     }
   }
   
-  draw(context) {
-    const x = this.gameObject.x - 8
-    const y = this.gameObject.y - 18
+  draw(context, cameraPerson) {
+    const x = this.gameObject.x - 8 + utilities.withGrid(10.5) - cameraPerson.x
+    const y = this.gameObject.y - 18 + utilities.withGrid(6) - cameraPerson.y
 
     this.isShadowLoaded && context.drawImage(this.shadow, x, y)
 
